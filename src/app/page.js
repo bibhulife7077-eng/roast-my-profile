@@ -88,7 +88,7 @@ return (
 <main className="site-shell">
 <nav className="nav">
 <a href="#" className="brand"><span className="brand-mark">R</span> roast<span className="brand-light">myprofile</span></a>
-<span className="nav-pill"><span className="live-dot" /> THE INTERNET'S MIRROR</span>
+<span className="nav-pill"><span className="live-dot" /> THE INTERNET&apos;S MIRROR</span>
 </nav>
 
   <section className="hero">
