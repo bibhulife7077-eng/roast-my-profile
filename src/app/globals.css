@@ -105,8 +105,8 @@ letter-spacing: 2px;
 .eyebrow span { color: #ff8bd2; font-size: 17px; }
 
 h1 {
-margin: 20px 0 14px;
-font-size: clamp(54px, 9vw, 88px);
+margin: 28px 0 14px;
+font-size: clamp(58px, 9.5vw, 94px);
 line-height: .99;
 letter-spacing: -5px;
 font-weight: 900;
