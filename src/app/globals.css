@@ -313,3 +313,107 @@ h1 { letter-spacing: -3px; }
 .steps h3 { margin-top: 8px; }
 .footer { justify-content: center; padding: 22px 0; text-align: center; }
 }
+
+
+/* Mobile touch feedback */
+button {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  cursor: pointer;
+  transition: transform .14s ease, filter .14s ease,
+              border-color .14s ease, background .14s ease;
+}
+button:active:not(:disabled) {
+  transform: scale(.96);
+  filter: brightness(1.18);
+}
+button:focus-visible {
+  outline: 2px solid #c19cff;
+  outline-offset: 3px;
+}
+button:disabled {
+  opacity: .75;
+  cursor: wait;
+}
+.example-chip:active,
+.secondary-button:active {
+  background: #49345c;
+}
+.style-option:active {
+  transform: scale(.96);
+}
+.roast-button:active:not(:disabled) {
+  transform: scale(.975);
+}
+
+/* AI roast generation */
+.loading-panel {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-top: 17px;
+  padding: 15px;
+  border: 1px solid #b18bff55;
+  border-radius: 13px;
+  background: linear-gradient(120deg, #25172f, #191522);
+  animation: loading-appear .35s ease both;
+}
+.loading-flame {
+  font-size: 27px;
+  animation: flame-pulse .8s ease-in-out infinite alternate;
+}
+.loading-copy {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  flex-direction: column;
+  gap: 5px;
+}
+.loading-copy strong {
+  color: #ffb1df;
+  font-size: 12px;
+  animation: message-in .3s ease;
+}
+.loading-copy span {
+  color: #a99db5;
+  font-size: 10px;
+}
+.loading-bars {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 25px;
+}
+.loading-bars i {
+  width: 3px;
+  height: 8px;
+  border-radius: 5px;
+  background: #d49aff;
+  animation: loading-wave .7s ease-in-out infinite alternate;
+}
+.loading-bars i:nth-child(2) { animation-delay: .12s; }
+.loading-bars i:nth-child(3) { animation-delay: .24s; }
+.loading-bars i:nth-child(4) { animation-delay: .36s; }
+.loading-bars i:nth-child(5) { animation-delay: .48s; }
+
+@keyframes flame-pulse {
+  from { transform: scale(.88) rotate(-5deg); }
+  to { transform: scale(1.12) rotate(5deg); }
+}
+@keyframes loading-wave {
+  to { height: 23px; }
+}
+@keyframes loading-appear {
+  from { opacity: 0; transform: translateY(7px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes message-in {
+  from { opacity: .3; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .loading-flame, .loading-bars i {
+    animation: none;
+  }
+  button { transition: none; }
+}

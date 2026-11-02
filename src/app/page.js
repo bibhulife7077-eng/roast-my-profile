@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const examples = [
 "CEO of overthinking. Professional napper. Replying mentally since 2019.",
@@ -21,6 +21,28 @@ const [result, setResult] = useState("");
 const [copied, setCopied] = useState(false);
 const [error, setError] = useState("");
 const [loading, setLoading] = useState(false);
+const [loadingMessage, setLoadingMessage] = useState(0);
+
+useEffect(() => {
+  if (!loading) return;
+  const messages = [
+    "Analyzing your bio...",
+    "Finding your weak spots...",
+    "Consulting the roast department...",
+    "Preparing emotional damage..."
+  ];
+  const timer = setInterval(() => {
+    setLoadingMessage(current => (current + 1) % messages.length);
+  }, 1800);
+  return () => clearInterval(timer);
+}, [loading]);
+
+const waitingMessages = [
+  "Analyzing your bio...",
+  "Finding your weak spots...",
+  "Consulting the roast department...",
+  "Preparing emotional damage..."
+];
 
 async function generateRoast() {
 const text = profile.trim();
@@ -144,9 +166,20 @@ return (
         ))}
       </div>
 
-      <button className="roast-button" onClick={generateRoast}>
-        Roast me <span>↗</span>
+      <button className="roast-button" onClick={generateRoast} disabled={loading}>
+        {loading ? "Cooking your roast..." : "Roast me"} <span>↗</span>
       </button>
+
+      {loading && (
+        <div className="loading-panel" role="status" aria-live="polite">
+          <div className="loading-flame">🔥</div>
+          <div className="loading-copy">
+            <strong>{waitingMessages[loadingMessage]}</strong>
+            <span>Our roast machine is working.</span>
+          </div>
+          <div className="loading-bars"><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+      )}
       <p className="privacy-note"><span>◇</span> Just for laughs. Don&apos;t submit private information.</p>
 
       {error && <p className="error-message" role="alert">{error}</p>}
